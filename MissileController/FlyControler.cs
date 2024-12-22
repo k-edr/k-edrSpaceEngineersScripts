@@ -69,8 +69,9 @@ namespace IngameScript
         private void ProcessPoint(Queue<FlyingPoint> pointsQueue)
         {
             var point = pointsQueue.Peek();
-            
-            if ((_controller.GetPosition() - point.Point).LengthSquared() < _precision)
+           
+            _logger.LogLine($"Distance to point: {(_controller.GetPosition() - point.Point).Length()}");
+            if ((_controller.GetPosition() - point.Point).Length() < _precision)
             {
                 _logger.LogLine($"Navigating to point: {point.Point}");
                     

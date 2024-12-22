@@ -20,11 +20,11 @@ namespace IngameScript
         
         public void NavigateTo(FlyingPoint point)
         {
-            var angles = GetNavAngles(point.Point);
+            var angles = GetNavAngles(point.Point) * 5;
             
             foreach (var gyro in _gyros)
             {
-                var anglesLocal = TransformAnglesToLocal(angles, gyro.WorldMatrix);
+                //var anglesLocal = TransformAnglesToLocal(angles, gyro.WorldMatrix);
                 gyro.GyroOverride = true;
                 gyro.Yaw = (float)angles.X;
                 gyro.Pitch = (float)angles.Y;
@@ -65,7 +65,7 @@ namespace IngameScript
             
             _logger.LogLine($"Target pitch: {targetPitch:0.00}, yaw: {targetYaw:0.00}, roll: {targetRoll:0.00}");
             
-            return new Vector3D(targetYaw, targetPitch, targetRoll);
+            return new Vector3D(targetYaw, -targetPitch, targetRoll);
         }
     }
 }

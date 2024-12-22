@@ -17,7 +17,7 @@ namespace IngameScript
         {
             Runtime.UpdateFrequency = UpdateFrequency.Update10;
             
-            _shipController = GridTerminalSystem.GetBlockWithName("Remote Control") as IMyShipController;
+            _shipController = GridTerminalSystem.GetBlockWithName("Remote Control " + _myTag.MyTagString) as IMyShipController;
             _plan = new FlyingPlan();
             
             List<IMyGyro> gyros = new List<IMyGyro>();
@@ -28,7 +28,6 @@ namespace IngameScript
             
             var blocks = new List<IMyTerminalBlock>();
             GridTerminalSystem.GetBlocks(blocks);
-            new AutoTag(Me).SetTag(blocks);
             
             _commandExecutor.Add("AddPoint", args => _plan.Add(new FlyingPoint(GpsParser.Parse(args[0]))));
             _commandExecutor.Add("FinishPlan", () => _flyControler.SetNewPlan(_plan));
@@ -43,6 +42,8 @@ namespace IngameScript
                 _commandExecutor.TryExecute("FinishPlan");
                 _commandExecutor.TryExecute("StartFlying");
             });
+            
+            _commandExecutor.TryExecute("SetTag");
         }
         
         public void Execute()

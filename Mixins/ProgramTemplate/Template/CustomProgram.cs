@@ -29,8 +29,10 @@ namespace IngameScript
             _commandExecutor.Add("RemoveTag", () => _myTag.RemoveTag(blocks));
             _commandExecutor.Add("SetTag", () =>
             {
-                _myTag.SetTag(blocks);
-                _myGridBlocks = blocks.Where(x=>x.CustomName.Contains(_myTag.MyTagString)).ToList();
+                var blocks2 = new List<IMyTerminalBlock>();
+                GridTerminalSystem.GetBlocks(blocks2);
+                _myTag.SetTag(blocks2);
+                _myGridBlocks = blocks2.Where(x=>x.CustomName.Contains(_myTag.MyTagString)).ToList();
                 _logger.LogLine($"Blocks count: {_myGridBlocks.Count}");
                 _logger.LogLine($"The tag is: {_myTag.MyTagString}");
             });
