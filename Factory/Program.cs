@@ -31,21 +31,23 @@ namespace IngameScript
             _commandExecutor.Add("WhenBegin", () =>
             {
                 _logger.LogLine("Start products production.");
-                
                 _beginTimer.Trigger();
             });
             
             _commandExecutor.Add("WhenFinish", () =>
             {
+                var factoryPbs = _myGridBlocks
+                    .Select(x=> x as IMyProgrammableBlock)
+                    .Where(x => x != null)
+                    .ToList();
+                
                 var allPBs = new List<IMyProgrammableBlock>();
-                List<IMyProgrammableBlock> factoryPbs = (List<IMyProgrammableBlock>)_myGridBlocks.Where(x => x is IMyProgrammableBlock);
                 GridTerminalSystem.GetBlocksOfType(allPBs);
                 
-                var newGridPb = allPBs.Except(factoryPbs).FirstOrDefault();
-
+                var newGridPb = allPBs.Except(factoryPbs, new PBEqualsComparer()).FirstOrDefault();
                 if (newGridPb != null)
                 {
-                    newGridPb.TryRun("SetTag");
+                    _logger.LogLine("Try run: " + newGridPb.TryRun("SetTag"));
                 }
                 
                 _logger.LogLine("Finish products production.");
@@ -58,3 +60,4 @@ namespace IngameScript
         }
     }
 }
+

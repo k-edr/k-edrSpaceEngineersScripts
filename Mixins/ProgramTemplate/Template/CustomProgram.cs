@@ -31,6 +31,8 @@ namespace IngameScript
             {
                 _myTag.SetTag(blocks);
                 _myGridBlocks = blocks.Where(x=>x.CustomName.Contains(_myTag.MyTagString)).ToList();
+                _logger.LogLine($"Blocks count: {_myGridBlocks.Count}");
+                _logger.LogLine($"The tag is: {_myTag.MyTagString}");
             });
             
             _commandExecutor.TryExecute("SetTag");
@@ -40,14 +42,14 @@ namespace IngameScript
 
         public void Main(string argument, UpdateType updateSource)
         {
-            if ((updateSource & (UpdateType.Terminal | UpdateType.Trigger)) != 0
+            if ((updateSource & (UpdateType.Terminal | UpdateType.Trigger | UpdateType.Script)) != 0
                 && argument != string.Empty)
             {
                 var commands = argument.Split(';');
                 foreach (var command in commands)
                 {
-                    var commandName = argument.Split(' ')[0];
-                    var commandParams = string.Join(" ", argument.Split(' ').Skip(1));
+                    var commandName = command.Split(' ')[0];
+                    var commandParams = string.Join(" ", command.Split(' ').Skip(1));
 
                     _commandExecutor.TryExecute(commandName, commandParams);
                 }

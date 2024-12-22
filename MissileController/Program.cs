@@ -16,6 +16,7 @@ namespace IngameScript
         public void Init()
         {
             Runtime.UpdateFrequency = UpdateFrequency.Update10;
+            
             _shipController = GridTerminalSystem.GetBlockWithName("Remote Control") as IMyShipController;
             _plan = new FlyingPlan();
             

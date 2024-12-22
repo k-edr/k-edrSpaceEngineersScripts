@@ -12,6 +12,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)CommandSystem\CommandExecutor.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CommandSystem\CommandModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\AutoTag.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)LoggingSystem\EchoLogger.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LoggingSystem\ILoggable.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LoggingSystem\SurfaceLogger.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Template\CustomProgram.cs" />
