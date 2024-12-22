@@ -6,6 +6,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mixins", "Mixins", "{509E3C
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "ProgramTemplate", "Mixins\ProgramTemplate\ProgramTemplate.shproj", "{8A3CDCC5-4B55-4D87-A415-698A0E1FF06F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Factory", "Factory\Factory.csproj", "{2456A7AA-2650-466F-AA0B-42435151CCF4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -17,6 +19,10 @@ Global
 		{D93E6BF2-0049-4B22-B9B1-3DE8257953D2}.Release|x64.ActiveCfg = Release|x64
 		{D93E6BF2-0049-4B22-B9B1-3DE8257953D2}.Release|x64.Build.0 = Release|x64
 		{D93E6BF2-0049-4B22-B9B1-3DE8257953D2}.Debug|x64.Deploy.0 = Debug|x64
+		{2456A7AA-2650-466F-AA0B-42435151CCF4}.Debug|x64.ActiveCfg = Debug|x64
+		{2456A7AA-2650-466F-AA0B-42435151CCF4}.Debug|x64.Build.0 = Debug|x64
+		{2456A7AA-2650-466F-AA0B-42435151CCF4}.Release|x64.ActiveCfg = Release|x64
+		{2456A7AA-2650-466F-AA0B-42435151CCF4}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 	EndGlobalSection

@@ -8,6 +8,7 @@ namespace IngameScript
         private IMyProgrammableBlock _block;
         
         public long MyTag => _block.EntityId;
+        public string MyTagString => $"[{MyTag}]";
 
         public AutoTag(IMyProgrammableBlock block)
         {

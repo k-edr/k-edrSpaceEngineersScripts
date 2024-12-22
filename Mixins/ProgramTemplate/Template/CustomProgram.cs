@@ -13,7 +13,7 @@ namespace IngameScript
         
         private List<IMyTerminalBlock> _myGridBlocks;
         
-        private readonly long _myTag;
+        private readonly AutoTag _myTag;
         
         public Program()
         {
@@ -22,15 +22,15 @@ namespace IngameScript
             
             _commandExecutor.Add("ClearLogger", () => ((SurfaceLogger)_logger).Clear());
             
-            _myTag = new AutoTag(Me).MyTag;
+            _myTag = new AutoTag(Me);
             
             var blocks = new List<IMyTerminalBlock>();
             GridTerminalSystem.GetBlocks(blocks);
-            _commandExecutor.Add("RemoveTag", () => new AutoTag(Me).RemoveTag(blocks));
+            _commandExecutor.Add("RemoveTag", () => _myTag.RemoveTag(blocks));
             _commandExecutor.Add("SetTag", () =>
             {
-                new AutoTag(Me).SetTag(blocks);
-                _myGridBlocks = blocks.Where(x=>x.CustomName.Contains(_myTag.ToString())).ToList();
+                _myTag.SetTag(blocks);
+                _myGridBlocks = blocks.Where(x=>x.CustomName.Contains(_myTag.MyTagString)).ToList();
             });
             
             _commandExecutor.TryExecute("SetTag");
