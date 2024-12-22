@@ -2,7 +2,9 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MissileController", "MissileController\MissileController.csproj", "{D93E6BF2-0049-4B22-B9B1-3DE8257953D2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComponentTracker", "ComponentTracker\ComponentTracker.csproj", "{284C341E-64B3-4D9B-BB44-FBC79EBE0459}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mixins", "Mixins", "{509E3CB6-7729-4F5A-8D4B-BFFE70483DD8}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "ProgramTemplate", "Mixins\ProgramTemplate\ProgramTemplate.shproj", "{8A3CDCC5-4B55-4D87-A415-698A0E1FF06F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -14,9 +16,8 @@ Global
 		{D93E6BF2-0049-4B22-B9B1-3DE8257953D2}.Debug|x64.Build.0 = Debug|x64
 		{D93E6BF2-0049-4B22-B9B1-3DE8257953D2}.Release|x64.ActiveCfg = Release|x64
 		{D93E6BF2-0049-4B22-B9B1-3DE8257953D2}.Release|x64.Build.0 = Release|x64
-		{284C341E-64B3-4D9B-BB44-FBC79EBE0459}.Debug|x64.ActiveCfg = Debug|x64
-		{284C341E-64B3-4D9B-BB44-FBC79EBE0459}.Debug|x64.Build.0 = Debug|x64
-		{284C341E-64B3-4D9B-BB44-FBC79EBE0459}.Release|x64.ActiveCfg = Release|x64
-		{284C341E-64B3-4D9B-BB44-FBC79EBE0459}.Release|x64.Build.0 = Release|x64
+		{D93E6BF2-0049-4B22-B9B1-3DE8257953D2}.Debug|x64.Deploy.0 = Debug|x64
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
 	EndGlobalSection
 EndGlobal

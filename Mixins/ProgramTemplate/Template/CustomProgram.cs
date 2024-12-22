@@ -7,16 +7,33 @@ namespace IngameScript
 {
     partial class Program : MyGridProgram
     {
-        ILoggable _logger;
+        private readonly ILoggable _logger;
 
-        CommandExecutor _commandExecutor;
-
+        private readonly CommandExecutor _commandExecutor;
+        
+        private List<IMyTerminalBlock> _myGridBlocks;
+        
+        private readonly long _myTag;
+        
         public Program()
         {
             _logger = new SurfaceLogger(Me.GetSurface(0));
             _commandExecutor = new CommandExecutor(_logger);
             
             _commandExecutor.Add("ClearLogger", () => ((SurfaceLogger)_logger).Clear());
+            
+            _myTag = new AutoTag(Me).MyTag;
+            
+            var blocks = new List<IMyTerminalBlock>();
+            GridTerminalSystem.GetBlocks(blocks);
+            _commandExecutor.Add("RemoveTag", () => new AutoTag(Me).RemoveTag(blocks));
+            _commandExecutor.Add("SetTag", () =>
+            {
+                new AutoTag(Me).SetTag(blocks);
+                _myGridBlocks = blocks.Where(x=>x.CustomName.Contains(_myTag.ToString())).ToList();
+            });
+            
+            _commandExecutor.TryExecute("SetTag");
             
             Init();
         }

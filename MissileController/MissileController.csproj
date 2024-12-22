@@ -23,8 +23,5 @@
         <AdditionalFiles Include="Instructions.readme"/>
         <AdditionalFiles Include="thumb.png"/>
     </ItemGroup>
-    <ItemGroup>
-      <Folder Include="Commands\" />
-      <Folder Include="Navigator\" />
-    </ItemGroup>
+    <Import Project="..\Mixins\ProgramTemplate\ProgramTemplate.projitems" Label="Shared" />
 </Project>

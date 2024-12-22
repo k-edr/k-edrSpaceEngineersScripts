@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>8a3cdcc5-4b55-4d87-a415-698a0e1ff06f</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>IngameScript</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)CommandSystem\CommandExecutor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CommandSystem\CommandModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\AutoTag.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)LoggingSystem\ILoggable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)LoggingSystem\SurfaceLogger.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Template\CustomProgram.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Template\IProgram.cs" />
+  </ItemGroup>
+</Project>
