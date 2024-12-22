@@ -31,3 +31,5 @@
 /MissileController/obj/rider.project.restore.info
 /SEProjects.sln.DotSettings.user
 /.idea/.idea.SEProjects/.idea/vcs.xml
+/obj
+/obj/
