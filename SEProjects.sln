@@ -8,6 +8,8 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "ProgramTemplate", "Mixins\P
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Factory", "Factory\Factory.csproj", "{2456A7AA-2650-466F-AA0B-42435151CCF4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lidar", "Lidar\Lidar.csproj", "{E73A21A8-2D51-4902-BCF5-562C55285CB2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -23,6 +25,10 @@ Global
 		{2456A7AA-2650-466F-AA0B-42435151CCF4}.Debug|x64.Build.0 = Debug|x64
 		{2456A7AA-2650-466F-AA0B-42435151CCF4}.Release|x64.ActiveCfg = Release|x64
 		{2456A7AA-2650-466F-AA0B-42435151CCF4}.Release|x64.Build.0 = Release|x64
+		{E73A21A8-2D51-4902-BCF5-562C55285CB2}.Debug|x64.ActiveCfg = Debug|x64
+		{E73A21A8-2D51-4902-BCF5-562C55285CB2}.Debug|x64.Build.0 = Debug|x64
+		{E73A21A8-2D51-4902-BCF5-562C55285CB2}.Release|x64.ActiveCfg = Release|x64
+		{E73A21A8-2D51-4902-BCF5-562C55285CB2}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 	EndGlobalSection

@@ -2,7 +2,6 @@
 using Sandbox.ModAPI.Ingame;
 using Sandbox.ModAPI.Interfaces;
 using SpaceEngineers.Game.ModAPI.Ingame;
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Immutable;
@@ -20,53 +19,97 @@ using VRageMath;
 
 namespace IngameScript
 {
-    partial class Program : MyGridProgram
+    class LockedEntitiesSurfaceDisplay
     {
-        // This file contains your actual script.
-        //
-        // You can either keep all your code here, or you can create separate
-        // code files to make your program easier to navigate while coding.
-        //
-        // Go to:
-        // https://github.com/malware-dev/MDK-SE/wiki/Quick-Introduction-to-Space-Engineers-Ingame-Scripts
-        //
-        // to learn more about ingame scripts.
-
-        public Program()
+        private IMyTextSurface _surface;
+        
+        private List<LockedEntityHandler> _handlers;
+        
+        private Lidar _lidar;
+        private LidarScanner _scanner;
+        
+        public LockedEntitiesSurfaceDisplay(IMyTextSurface surface, List<LockedEntityHandler> handlers, Lidar lidar, LidarScanner scanner)
         {
-            // The constructor, called only once every session and
-            // always before any other method is called. Use it to
-            // initialize your script. 
-            //     
-            // The constructor is optional and can be removed if not
-            // needed.
-            // 
-            // It's recommended to set Runtime.UpdateFrequency 
-            // here, which will allow your script to run itself without a 
-            // timer block.
+            _surface = surface;
+            _handlers = handlers;
+            _lidar = lidar;
+            _scanner = scanner;
         }
 
-        public void Save()
+        public void Update()
         {
-            // Called when the program needs to save its state. Use
-            // this method to save your state to the Storage field
-            // or some other means. 
-            // 
-            // This method is optional and can be removed if not
-            // needed.
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine($"Available distance: {_lidar.MaxAvailableDistance()}");
+ 
+            foreach (var handler in _handlers)
+            {
+                sb.AppendLine($"Entity: {handler.LastDetectedEntity.EntityId}");
+                sb.AppendLine($"Position: {handler.LastDetectedEntity.Position}");
+                sb.AppendLine($"Speed: {handler.LastDetectedEntity.Velocity.LengthSquared()}");
+            }
+
+            _surface.WriteText(sb);
+        }
+        
+    }
+    
+    partial class Program : IProgram
+    {
+        private LidarScanner _lidarScanner;
+        
+        private Lidar _lidar;
+        
+        private List<LockedEntityHandler> _lockedEntityHandlers = new List<LockedEntityHandler>();
+        
+        private LockedEntitiesSurfaceDisplay _display;
+        
+        public void Init()
+        {
+            Runtime.UpdateFrequency = UpdateFrequency.Update10;
+            
+            var cameras = _myGridBlocks.Select(x=> x as IMyCameraBlock).Where(x=> x is IMyCameraBlock).ToList();
+            
+            _lidar = new Lidar(_logger, cameras);
+            _lidarScanner = new LidarScanner(_logger, _lidar,15000,10);
+            _lidarScanner.OnLock += OnLock;
+            
+            _commandExecutor.Add("StartScan", () => _lidarScanner.StartLocking());
+            _commandExecutor.Add("StopScan", () => _lidarScanner.StopLocking());
+
+            var display = _myGridBlocks.Select(x => x).FirstOrDefault(x => x.CustomName.Equals("Display " + _myTag.MyTagString)) as IMyTextSurface;
+            _display = new LockedEntitiesSurfaceDisplay(display, _lockedEntityHandlers, _lidar, _lidarScanner);
         }
 
-        public void Main(string argument, UpdateType updateSource)
+        public void Execute()
         {
-            // The main entry point of the script, invoked every time
-            // one of the programmable block's Run actions are invoked,
-            // or the script updates itself. The updateSource argument
-            // describes where the update came from. Be aware that the
-            // updateSource is a  bitfield  and might contain more than 
-            // one update type.
-            // 
-            // The method itself is required, but the arguments above
-            // can be removed if not needed.
+            _lidarScanner.TryLock();
+            
+            _lockedEntityHandlers.RemoveAll(x => !x.IsLocked);
+            foreach (var handler in _lockedEntityHandlers)
+            {
+                handler.HoldLock();
+            }
+            
+            _display.Update();
+        }
+
+        private void OnLock(MyDetectedEntityInfo scanResult)
+        {
+            if(_lockedEntityHandlers.Any(x => x.LastDetectedEntity.EntityId == scanResult.EntityId)) return;
+            var newHandler = new LockedEntityHandler(_logger, _lidar, scanResult);
+            
+            newHandler.HoldLock();
+
+            if (newHandler.LastDetectedEntity.EntityId == scanResult.EntityId)
+            {
+                _lockedEntityHandlers.Add(newHandler);
+                
+                _logger.LogLine($"Successfully locked entity: {scanResult.EntityId}");
+            }
+            else
+            {
+                _logger.LogLine($"Failed to lock entity: {scanResult.EntityId}");
+            }
         }
     }
 }
