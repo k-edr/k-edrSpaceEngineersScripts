@@ -18,6 +18,7 @@ namespace IngameScript
         public Program()
         {
             _logger = new SurfaceLogger(Me.GetSurface(0));
+            (_logger as SurfaceLogger).Clear();
             _commandExecutor = new CommandExecutor(_logger);
             
             _commandExecutor.Add("ClearLogger", () => ((SurfaceLogger)_logger).Clear());
