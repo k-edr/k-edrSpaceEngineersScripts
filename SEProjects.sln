@@ -10,6 +10,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Factory", "Factory\Factory.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lidar", "Lidar\Lidar.csproj", "{E73A21A8-2D51-4902-BCF5-562C55285CB2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClearMyTag", "ClearMyTag\ClearMyTag.csproj", "{632283D6-4960-4C01-87CC-0F9D9C3DC17B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -29,6 +31,10 @@ Global
 		{E73A21A8-2D51-4902-BCF5-562C55285CB2}.Debug|x64.Build.0 = Debug|x64
 		{E73A21A8-2D51-4902-BCF5-562C55285CB2}.Release|x64.ActiveCfg = Release|x64
 		{E73A21A8-2D51-4902-BCF5-562C55285CB2}.Release|x64.Build.0 = Release|x64
+		{632283D6-4960-4C01-87CC-0F9D9C3DC17B}.Debug|x64.ActiveCfg = Debug|x64
+		{632283D6-4960-4C01-87CC-0F9D9C3DC17B}.Debug|x64.Build.0 = Debug|x64
+		{632283D6-4960-4C01-87CC-0F9D9C3DC17B}.Release|x64.ActiveCfg = Release|x64
+		{632283D6-4960-4C01-87CC-0F9D9C3DC17B}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 	EndGlobalSection
