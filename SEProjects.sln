@@ -12,6 +12,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lidar", "Lidar\Lidar.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClearMyTag", "ClearMyTag\ClearMyTag.csproj", "{632283D6-4960-4C01-87CC-0F9D9C3DC17B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LidarMissile", "LidarMissile\LidarMissile.csproj", "{34935FEB-347D-4CD1-BFCF-6297AA655B36}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "LidarRadar", "LidarRadar\LidarRadar.shproj", "{8A3CDCC5-4B55-4D87-A415-698A0E1FF06F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PbCommandsSandler", "PbCommandsSandler\PbCommandsSandler.csproj", "{2DEC2E99-CC4B-4D78-9B34-EC7E087A6813}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Missiles", "Missiles", "{31ACF6AB-160A-4972-AA85-430BD8283A5B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -35,7 +43,18 @@ Global
 		{632283D6-4960-4C01-87CC-0F9D9C3DC17B}.Debug|x64.Build.0 = Debug|x64
 		{632283D6-4960-4C01-87CC-0F9D9C3DC17B}.Release|x64.ActiveCfg = Release|x64
 		{632283D6-4960-4C01-87CC-0F9D9C3DC17B}.Release|x64.Build.0 = Release|x64
+		{34935FEB-347D-4CD1-BFCF-6297AA655B36}.Debug|x64.ActiveCfg = Debug|x64
+		{34935FEB-347D-4CD1-BFCF-6297AA655B36}.Debug|x64.Build.0 = Debug|x64
+		{34935FEB-347D-4CD1-BFCF-6297AA655B36}.Release|x64.ActiveCfg = Release|x64
+		{34935FEB-347D-4CD1-BFCF-6297AA655B36}.Release|x64.Build.0 = Release|x64
+		{2DEC2E99-CC4B-4D78-9B34-EC7E087A6813}.Debug|x64.ActiveCfg = Debug|x64
+		{2DEC2E99-CC4B-4D78-9B34-EC7E087A6813}.Debug|x64.Build.0 = Debug|x64
+		{2DEC2E99-CC4B-4D78-9B34-EC7E087A6813}.Release|x64.ActiveCfg = Release|x64
+		{2DEC2E99-CC4B-4D78-9B34-EC7E087A6813}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{8A3CDCC5-4B55-4D87-A415-698A0E1FF06F} = {509E3CB6-7729-4F5A-8D4B-BFFE70483DD8}
+		{34935FEB-347D-4CD1-BFCF-6297AA655B36} = {31ACF6AB-160A-4972-AA85-430BD8283A5B}
+		{2DEC2E99-CC4B-4D78-9B34-EC7E087A6813} = {31ACF6AB-160A-4972-AA85-430BD8283A5B}
 	EndGlobalSection
 EndGlobal

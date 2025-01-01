@@ -23,11 +23,13 @@ namespace IngameScript
             
             _commandExecutor.Add("ClearLogger", () => ((SurfaceLogger)_logger).Clear());
             
-            _myTag = new AutoTag(Me);
+            _myTag = new AutoTag(_logger, Me);
+            
+            _logger.LogLine($"The tag is: {_myTag.MyTagString}");
             
             var blocks = new List<IMyTerminalBlock>();
             GridTerminalSystem.GetBlocks(blocks);
-            _commandExecutor.Add("RemoveTag", () => _myTag.RemoveTag(blocks));
+            _commandExecutor.Add("RemoveAllTags", () => _myTag.RemoveAllTags(blocks));
             _commandExecutor.Add("SetTag", () =>
             {
                 var blocks2 = new List<IMyTerminalBlock>();
@@ -45,9 +47,10 @@ namespace IngameScript
 
         public void Main(string argument, UpdateType updateSource)
         {
-            if ((updateSource & (UpdateType.Terminal | UpdateType.Trigger | UpdateType.Script)) != 0
+            if ((updateSource & (UpdateType.Terminal | UpdateType.Trigger | UpdateType.Script )) != 0
                 && argument != string.Empty)
             {
+                _logger.LogLine($"Got command\\s:" + argument);
                 var commands = argument.Split(';');
                 foreach (var command in commands)
                 {
@@ -65,3 +68,5 @@ namespace IngameScript
         }
     }
 }
+//TODO: add the MyGridBlocksOfType<>(), MyGridBlocksWithName(string), MyGridBlocksContainsName(string), FirstBlockOfType<>(),FirstBlockWithName().
+//_myGridBlocks.Select(x => x as IMyShipMergeBlock).Where(x => x != null);
