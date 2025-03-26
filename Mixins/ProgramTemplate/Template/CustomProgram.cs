@@ -2,25 +2,27 @@
 using System.Collections.Generic;
 using System.Linq;
 using Sandbox.ModAPI.Ingame;
+using VRage.Game.GUI.TextPanel;
 
 namespace IngameScript
 {
     partial class Program : MyGridProgram
     {
-        private readonly ILoggable _logger;
+        private ILoggable _logger;
 
-        private readonly CommandExecutor _commandExecutor;
+        private CommandExecutor _commandExecutor;
 
         private List<IMyTerminalBlock> _myGridBlocks;
 
-        private readonly AutoTag _myTag;
+        private AutoTag _myTag;
 
         public Program()
         {
-            InitCommandExecutor();
             InitLogger();
+            InitCommandExecutor();
             InitAutoTag();
 
+            _commandExecutor.Add("ClearLogger", () => ((SurfaceLogger)_logger).Clear());
             _commandExecutor.TryExecute("SetTag");
 
             Init();
@@ -47,23 +49,22 @@ namespace IngameScript
                 Execute();
             }
         }
-    }
 
-     private void InitCommandExecutor()
+
+        private void InitCommandExecutor()
         {
             _commandExecutor = new CommandExecutor(_logger);
         }
 
-        private virtual void InitLogger()
+        private void InitLogger()
         {
             _logger = new SurfaceLogger(Me.GetSurface(0));
+            Me.GetSurface(0).ContentType = ContentType.TEXT_AND_IMAGE;
 
             (_logger as SurfaceLogger).Clear();
-
-            _commandExecutor.Add("ClearLogger", () => ((SurfaceLogger)_logger).Clear());
         }
 
-        private virtual void InitAutoTag()
+        private void InitAutoTag()
         {
             _myTag = new AutoTag(_logger, Me);
 
@@ -83,5 +84,6 @@ namespace IngameScript
             });
         }
     }
+}
 //TODO: add the MyGridBlocksOfType<>(), MyGridBlocksWithName(string), MyGridBlocksContainsName(string), FirstBlockOfType<>(),FirstBlockWithName().
 //_myGridBlocks.Select(x => x as IMyShipMergeBlock).Where(x => x != null);
